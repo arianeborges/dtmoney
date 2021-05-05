@@ -16,7 +16,13 @@ export function TransactionsTable(): JSX.Element {
         <tbody>
           <tr>
             <td>Freelancer website</td>
-            <td>R$12.000</td>
+            <td className="withdraw">- R$12.000</td>
+            <td>Freelancer</td>
+            <td>05/05/2021</td>
+          </tr>
+          <tr>
+            <td>Freelancer website</td>
+            <td className="deposit">R$12.000</td>
             <td>Freelancer</td>
             <td>05/05/2021</td>
           </tr>
