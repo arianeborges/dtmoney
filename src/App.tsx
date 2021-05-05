@@ -1,12 +1,13 @@
-import { GlobalStyle } from "./styles/global";
+import React from 'react';
 
-export function App() {
+import { Header } from './components/Header';
+import { GlobalStyle } from './styles/global';
+
+export function App(): JSX.Element {
   return (
-    <div className="App">
-      <h1>Hello world</h1>
+    <>
+      <Header />
       <GlobalStyle />
-    </div>
+    </>
   );
 }
-
-
