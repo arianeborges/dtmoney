@@ -2,8 +2,10 @@ import React from 'react';
 import { useTransactions } from '../../hooks/useTransactions';
 import { Container } from './styles';
 
+import closeImg from '../../assets/close.svg';
+
 export function TransactionsTable(): JSX.Element {
-  const { transactions } = useTransactions();
+  const { transactions, removeTransaction } = useTransactions();
 
   return (
     <Container>
@@ -31,6 +33,14 @@ export function TransactionsTable(): JSX.Element {
                 {new Intl.DateTimeFormat('en-GB').format(
                   new Date(transaction.createdAt),
                 )}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  onClick={() => removeTransaction(transaction)}
+                >
+                  <img src={closeImg} alt="Remove transaction" />
+                </button>
               </td>
             </tr>
           ))}
