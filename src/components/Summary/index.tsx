@@ -56,7 +56,6 @@ export function Summary(): JSX.Element {
           <img src={outcomeImg} alt="Outcome" />
         </header>
         <strong>
-          -
           {new Intl.NumberFormat('en-GB', {
             style: 'currency',
             currency: 'GBP',
