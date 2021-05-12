@@ -53,6 +53,7 @@ export function TransactionsProvider({
     api
       .get('transactions')
       .then(response => setTransactions(response.data.transactions));
+    // loadTransactions();
   }, []);
 
   async function createTransaction(transactionInput: TransactionInput) {
@@ -63,13 +64,27 @@ export function TransactionsProvider({
 
     const { transaction } = response.data;
 
+    const parsed = JSON.stringify(transaction);
+    localStorage.setItem('@dtmoney: transaction', parsed);
+
     setTransactions([...transactions, transaction]);
   }
 
   function removeTransaction(transaction: Transaction) {
+    localStorage.removeItem('@dtmoney: transaction');
+
     setTransactions(oldData =>
       oldData.filter(item => item.id !== transaction.id),
     );
+  }
+
+  function loadTransactions() {
+    const load = localStorage.getItem('@dtmoney: transaction');
+
+    if (load) {
+      console.log(JSON.parse(load));
+      setTransactions(JSON.parse(load));
+    }
   }
 
   return (
