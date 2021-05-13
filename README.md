@@ -1,5 +1,9 @@
 # ![Logo](https://github.com/arianeborges/dtmoney/blob/main/public/favicon.png) dtmoney
 
+### 💻 DEMO
+
+![dtmoney demo](https://github.com/arianeborges/dtmoney/blob/main/Animation.gif)
+
 ### 🎨 Layout
 
 You can see the [dtmoney](https://www.figma.com/file/Utq8DAYw4ADtys2xqMCe0N/dtmoney-Ignite-Copy?node-id=0%3A1) layout in Figma.
