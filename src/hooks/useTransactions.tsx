@@ -50,10 +50,13 @@ export function TransactionsProvider({
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   useEffect(() => {
-    api
-      .get('transactions')
-      .then(response => setTransactions(response.data.transactions));
-    // loadTransactions();
+    // api
+    //   .get('transactions')
+    //   .then(response => setTransactions(response.data.transactions));
+    const loadTransactions = localStorage.getItem('@dtmoney: transactions');
+    if (loadTransactions) {
+      setTransactions(JSON.parse(loadTransactions));
+    }
   }, []);
 
   async function createTransaction(transactionInput: TransactionInput) {
@@ -64,27 +67,25 @@ export function TransactionsProvider({
 
     const { transaction } = response.data;
 
-    const parsed = JSON.stringify(transaction);
-    localStorage.setItem('@dtmoney: transaction', parsed);
-
     setTransactions([...transactions, transaction]);
-  }
 
-  function removeTransaction(transaction: Transaction) {
-    localStorage.removeItem('@dtmoney: transaction');
-
-    setTransactions(oldData =>
-      oldData.filter(item => item.id !== transaction.id),
+    localStorage.setItem(
+      '@dtmoney: transactions',
+      JSON.stringify([...transactions, transaction]),
     );
   }
 
-  function loadTransactions() {
-    const load = localStorage.getItem('@dtmoney: transaction');
+  function removeTransaction(transaction: Transaction) {
+    const filteredItems = transactions.filter(
+      item => item.id !== transaction.id,
+    );
 
-    if (load) {
-      console.log(JSON.parse(load));
-      setTransactions(JSON.parse(load));
-    }
+    setTransactions(filteredItems);
+
+    localStorage.setItem(
+      '@dtmoney: transactions',
+      JSON.stringify(filteredItems),
+    );
   }
 
   return (
